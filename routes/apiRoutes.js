@@ -13,15 +13,9 @@ module.exports = function(app) {
   });
 
     app.post("/api/all", function(req, res) {
-    db.lists.create({
-      departure: req.body.text,
-      destination: req.body.complete,
-      dateTime: req.body.dateTime,
-      seats: req.body.seats,
-      minMoney: req.body.minMoney
-    }).then(function(data) {
-      res.json(data);
-    });
+    db.lists.create(req.body)
+    console.log(req.body)
+    
 })
 
 //   app.get("/api/all/false", function(req, res) {

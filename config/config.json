@@ -1,24 +1,26 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "SPDB",
-    "host": "127.0.0.1",
+    "username": "bc72859302028e",
+    "password": "620cd59d",
+    "database": "heroku_5b6f0ddef596e82",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
     "dialect": "mysql",
-    "port": 8889
+    "port": 3306
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "bc72859302028e",
+    "password": "620cd59d",
+    "database": "heroku_5b6f0ddef596e82",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
+    "dialect": "mysql",
+    "port": 3306
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "bc72859302028e",
+    "password": "620cd59d",
+    "database": "heroku_5b6f0ddef596e82",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
+    "dialect": "mysql",
+    "port": 3306
   }
 }
