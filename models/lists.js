@@ -10,8 +10,13 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: { len: [1, 140] }
     },
-    dateTime: {
-      type: DataTypes.DATE,
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate: { len: [1] }
+    },
+    time: {
+      type: DataTypes.STRING,
       allowNull: false,
       validate: { len: [1] }
     },
