@@ -31,6 +31,12 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
   freezeTableName: true
+
+  lists.associate = function(models){
+    lists.hasmany(models.users, {
+      onDelete: "cascade"
+    })
+  }
   return lists;
 };
 

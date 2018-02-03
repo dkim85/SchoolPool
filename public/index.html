@@ -48,15 +48,49 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Schools" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" id="searchTerm" type="search" placeholder="Search Schools" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn">Search</button>
             </form>
         </div>
     </nav>
 
     <div id="displayDiv">
-        <div id="addDiv">
-            <h3>Find a Carpooling Ride to Your College Now!</h3>
+
+        <div id="blackoutDiv">
+
+        </div>
+
+        <div id="joinDiv" class="modalDiv">
+            <h3>Please write your information</h3>
+            <p>Name</p>
+            <p>
+                <input id="joinName" class="inputValue" type="text" value="John Doe">
+            </p>
+            <p>Contact phone number</p>
+            <p>
+                <input id="joinPhone" class="inputValue" type="text" value="000-000-0000">
+
+            </p>
+            <p>Contact email (optional)</p>
+            <p>
+                <input id="joinEmail" class="inputValue" type="text" value="000-000-0000">
+            </p>
+            <p>Memo</p>
+            <p>
+                <input id="joinMemo" class="inputValue" type="text" value="000-000-0000">
+            </p>
+
+            <p>
+                <button id="joinBtn">Submit</button>
+            </p>
+
+
+
+            <button id="closeBtn">X</button>
+
+        </div>
+        <div id="addDiv" class="modalDiv">
+            <h3>Post your ride!</h3>
             <p>Departure</p>
             <p>
                 <input id="departure" class="inputValue" type="text" value="Irvine">
@@ -99,7 +133,7 @@
             </p>
 
             <p>
-                <button id="submitBtn">Submit</button>
+                <button id="postBtn">Submit</button>
             </p>
 
             <button id="closeBtn">X</button>
