@@ -10,6 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: { len: [1, 140] }
     },
+    
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
@@ -32,13 +33,6 @@ module.exports = function (sequelize, DataTypes) {
   });
   freezeTableName: true
 
-  lists.associate = function(models){
-    lists.hasmany(models.users, {
-      onDelete: "cascade"
-    })
-  }
+
   return lists;
 };
-
-
-  //departure, destination, dateTime, seats, minMoney, 

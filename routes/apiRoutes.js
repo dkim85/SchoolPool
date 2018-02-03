@@ -19,8 +19,6 @@ module.exports = function (app) {
       })
     }
 
-    //show data with school name specific
-
     else if (school == null) {
       db.lists.findAll({})
         .then(function (data) {
@@ -39,8 +37,9 @@ module.exports = function (app) {
   })
 
   app.post("/api/joinRide", function (req, res) {
+    console.log(req.body)
     db.users.create(req.body)
-    // console.log(req.body)
+    
 
   })
 

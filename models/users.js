@@ -7,23 +7,20 @@ module.exports = function (sequelize, DataTypes) {
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: { len: [1, 10] }
+        allowNull: false
       },
       email: {
-        type: DataTypes.STRING      },
+        type: DataTypes.STRING
+    },
       memo: {
         type: DataTypes.STRING
+      },
+      postid:{
+          type:DataTypes.STRING,
+          allowNull: false,
+          validate: {len:[1]}
       }
     });
     freezeTableName: true;
-
-    users.associate = function(models){
-        users.belongsTo(models.lists, {
-            foreignKey: {
-                allowNull: false
-            }
-        })
-    }
     return users;
   };

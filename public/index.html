@@ -32,21 +32,19 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Find Rides
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" id="getRide">Get a Ride</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" id="postRide">Post a Ride</a>
-                    </div>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+        
+                        <li class="nav-item">
+                            <a class="nav-link" id="getRide">Get a Ride</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="postRide">Post a Ride</a>
+                        </li>
+                    </ul>
+
+
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" id="searchTerm" type="search" placeholder="Search Schools" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn">Search</button>
@@ -73,7 +71,7 @@
             </p>
             <p>Contact email (optional)</p>
             <p>
-                <input id="joinEmail" class="inputValue" type="text" value="000-000-0000">
+                <input id="joinEmail" class="inputValue" type="text" value="John@Doe.com">
             </p>
             <p>Memo</p>
             <p>
@@ -145,6 +143,52 @@
 
         </div>
     </div>
+
+    <header id="home-section">
+            <div class="dark-overlay">
+                <div class="home-inner">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-lg-6 m-auto">
+                            <h1 class="display-4">
+                            Make Every Trip to College
+                                <br> a Smart Trip</h1>
+        
+                            <div class="d-flex flex-row">
+                                <div class="p-4 align-self-start">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="p-4 align-self-end">
+                                    Have you ever had trouble finding a friend to carpool with on the weekends or for the holidays? Did you ever wish that there
+                                    was a way to connect with others who can either give you a ride or pitch in for some gas?
+                                </div>
+                            </div>
+        
+                            <div class="d-flex flex-row">
+                                <div class="p-4 align-self-start">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="p-4 align-self-end">
+                                    Say goodbye to your stress and say hello to School Pool! This app provides an efficient alternative to carpooling from campus
+                                    to any location that you desire. Post your own ride if you are looking for others to join
+                                    you on your journey or search for people who are already driving and looking for passengers.
+                                </div>
+                            </div>
+        
+                            <div class="d-flex flex-row">
+                                <div class="p-4 align-self-start">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="p-4 align-self-end">
+                                    So what are you waiting for? Start using SchoolPool and make your drives from school more enjoyable!
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
     <script src="js/view.js" type="text/javascript"></script>
 </body>
