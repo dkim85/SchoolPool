@@ -36,15 +36,19 @@
             </button>
             <a href="index.html" class="navbar-brand">SchoolPool</a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                    <a class="mr-5 btn btn-primary" href="#offerRide" role="button">Offer a ride</a>
+                <ul class="navbar-nav mr-auto">
+                
                     <li class="nav-item">
-                        <a href="#signUp" class="nav-link">Sign Up</a>
+                        <a class="nav-link" id="getRide">Get a Ride</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#login" class="nav-link">Login</a>
+                        <a class="nav-link" id="postRide">Post a Ride</a>
                     </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="searchTerm" type="search" placeholder="Search Schools" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="searchBtn">Search</button>
+                </form>
             </div>
         </div>
     </nav>

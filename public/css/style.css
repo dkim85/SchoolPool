@@ -67,3 +67,31 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.navbar {
+    border-bottom: #008ed6 3px solid;
+    /* opacity: 0.8; */
+}
+
+#home-section {
+    background: url(../images/carpooling.jpeg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 700px;
+}
+
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 700px;
+}
+
+.home-inner {
+    padding-top: 80px;
+}
+
+.card-form {
+    opacity: 0.8;
+}
