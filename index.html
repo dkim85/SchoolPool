@@ -39,7 +39,7 @@
                 <ul class="navbar-nav ml-auto">
                     <a class="mr-5 btn btn-primary" href="#offerRide" role="button">Offer a ride</a>
                     <li class="nav-item">
-                        <a href="#signUp" class="nav-link">Sign Up</a>
+                        <a href="#registration.html" class="nav-link">Sign Up</a>
                     </li>
                     <li class="nav-item">
                         <a href="#login" class="nav-link">Login</a>
@@ -57,16 +57,16 @@
                     <div class="row">
                         <div class="col-lg-8 d-none d-lg-block">
                             <h1 class="display-4">
+                              
                                 Make Every Trip to College
-                                <br> A Smart Trip</h1>
+                                <br> a Smart Trip</h1>
+                          
                             <div class="d-flex flex-row">
                                 <div class="p-4 align-self-start">
                                     <i class="fa fa-check"></i>
                                 </div>
                                 <div class="p-4 align-self-end">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis unde quod culpa explicabo in dolorem modi, laboriosam
-                                    voluptate minima eligendi vel qui velit, expedita atque odit illo exercitationem aut
-                                    voluptates!
+                                    Have you ever had trouble finding a friend to carpool with on the weekends or for the holidays? Did you ever wish that there was a way to connect with others who can either give you a ride or pitch in for some gas?
                                 </div>
                             </div>
 
@@ -75,9 +75,7 @@
                                     <i class="fa fa-check"></i>
                                 </div>
                                 <div class="p-4 align-self-end">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis unde quod culpa explicabo in dolorem modi, laboriosam
-                                    voluptate minima eligendi vel qui velit, expedita atque odit illo exercitationem aut
-                                    voluptates!
+                                    Say goodbye to your stress and say hello to School Pool! This app provides an efficient alternative to carpooling from campus to any location that you desire. Post your own ride if you are looking for others to join you on your journey or search for people who are already driving and looking for passengers.
                                 </div>
                             </div>
 
@@ -86,9 +84,7 @@
                                     <i class="fa fa-check"></i>
                                 </div>
                                 <div class="p-4 align-self-end">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis unde quod culpa explicabo in dolorem modi, laboriosam
-                                    voluptate minima eligendi vel qui velit, expedita atque odit illo exercitationem aut
-                                    voluptates!
+                                    So what are you waiting for? Start using SchoolPool and make your drives from school more enjoyable!
                                 </div>
                             </div>
                         </div>
@@ -103,14 +99,46 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-lg" placeholder="To">
                                         </div>
+                                     
+                                        <div class="container">
+                                                
+                                                    
+                                                        <div class="form-group">
+                                                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                                                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $('#datetimepicker1').datetimepicker();
+                                                        });
+                                                    </script>
+                                                
+                                            </div>
+                                        
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Date">
+                                            <label for="exampleFormControlSelect1">Seats Needed</label>
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Seats">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Mimimum Contribution ($)">
+                                            <label for="exampleFormControlSelect1">Mimimum Contribution ($)</label>
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>$5</option>
+                                                <option>$10</option>
+                                                <option>$15</option>
+                                                <option>$20</option>
+                                                <option>$25</option>
+                                            </select>
                                         </div>
                                         <a class="btn btn-secondary" href="#findaride" role="button">Find a Ride</a>
                                         </button>
@@ -126,5 +154,6 @@
 
 
 </body>
+
 
 </html>
