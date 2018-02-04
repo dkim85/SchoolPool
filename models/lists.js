@@ -1,5 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
   var lists = sequelize.define("lists", {
+
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     departure: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: { len: [1, 140] }
     },
-    
+
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
@@ -20,6 +26,9 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: { len: [1] }
+    },
+    currentSeats:{
+      type: DataTypes.INTEGER
     },
     seats: {
       type: DataTypes.INTEGER,

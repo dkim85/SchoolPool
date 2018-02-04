@@ -56,12 +56,17 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    background-color: white;
 }
 
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+}
+
+th{
+    font-weight: bold;
 }
 
 tr:nth-child(even) {
@@ -94,4 +99,10 @@ tr:nth-child(even) {
 
 .card-form {
     opacity: 0.8;
+}
+
+#listDiv{
+    position:relative;
+    top:90px;
+    left:0px;
 }
