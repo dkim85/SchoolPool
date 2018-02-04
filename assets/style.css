@@ -1,20 +1,18 @@
-*{
-    color:#fff;
-}
+
 
 .navbar{
     border-bottom: #008ed6 3px solid;
     opacity:0.8;
 }
 
-#home-section{
+/* #home-section{
     background:url(../images/carpooling.jpeg) no-repeat;
     background-size: cover;
     background-attachment: fixed;
     min-height:700px;
-}
+} */
 
-.dark-overlay{
+/* .dark-overlay{
     background-color: rgba(0,0,0,0.7);
     position:absolute;
     top:0;
@@ -29,6 +27,6 @@
 
 .card-form{
     opacity: 0.8;
-}
+} */
 
 

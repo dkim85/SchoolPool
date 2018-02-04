@@ -1,7 +1,10 @@
 $(document).ready(function () {
 
-    loadTable()
-    $(document).on("click", "#submitBtn", function () {
+    loadAll()
+
+
+    //posting ride
+    $(document).on("click", "#postBtn", function () {
 
         var data = {
             departure: $("#departure").val(),
@@ -14,16 +17,45 @@ $(document).ready(function () {
 
         console.log(data)
 
-        $.post("/api/all", data)
+        $.post("/api/postRide", data)
 
-        $("#addDiv").css("display","none")
-        loadTable()
+        $("#addDiv").css("display", "none")
+        loadAll()
 
     })
 
-    function reload() {
 
-    }
+    //join ride
+    $(document).on("click", "#joinBtn",function(){
+        $("#blackoutDiv").css("display","none");
+        var targetId = $(this).attr("id");
+
+        var data ={
+            name: $("#joinName").val(),
+            phone:$("#joinPhone").val(),
+            email:$("#joinEmail").val(),
+            memo:$("#joinMemo").val(),
+            postid: targetId
+        }        
+
+        console.log(data)
+
+        $.post("/api/joinRide",data).then(function(){
+            $("#joinName").val("");
+            $("#joinPhone").val("");
+            $("#joinEmail").val("");
+            $("#joinMemo").val(""); 
+        })
+
+        
+    })
+
+    //join button inside the table
+    $(document).on("click",".joinBtn", function(){
+        $("#blackoutDiv").css("display","block");
+        $("#joinDiv").css("display","block")
+
+    }) 
 
     //clear the default value of inputbox when click.
 
@@ -32,26 +64,59 @@ $(document).ready(function () {
         $(this).val("");
     })
 
+    //close button for the modal in general
     $(document).on("click", "#closeBtn", function () {
 
-        $("#addDiv").css("display", "none")
-        loadTable()
+        var target=`#${$(this).parent().attr("id")}`;
+        console.log(target)
+
+        $(target).css("display", "none");
+        $("#blackoutDiv").css("display","none");
+        loadAll()
     })
+
+    //post ride button from the nav bar
 
     $(document).on("click", "#postRide", function () {
         $("#listDiv").empty()
+        $("#blackoutDiv").css("display","block");
         $("#addDiv").css("display", "block")
     })
 
-
+    //get ride button from the nav bar
     $(document).on("click", "#getRide", function () {
-        $("#addDiv").css("display","none")
-        loadTable()
+        $("#addDiv").css("display", "none")
+        loadAll()
     })
 
 
-    function loadTable() {
+    //search by school button from the nav bar
+    $(document).on("click", "#searchBtn", function () {
+
+        loadBySchool();
+    })
+
+    //search by school function
+
+    function loadBySchool(){
+
+        var searchTerm = $("#searchTerm").val();
+
+        $.get("/api/all/" + searchTerm, function (data) {
+            console.log(searchTerm)
+      
+            refreshTable(data)
+        })       
+
+    }
+
+    //refreshing table (front end side)
+
+    function refreshTable(data) {
+        console.log(data)
+
         $("#listDiv").empty();
+        $("#blackoutDiv").css("display","none");
 
         var table =
             `<table>
@@ -65,11 +130,9 @@ $(document).ready(function () {
                 <th>Join</th>
             </tr>`
 
-        $.get("/api/all", function (data) {
-
-            for (var i = 0, n = data.length; i < n; i++) {
-                var contents =
-                    `<tr>
+        for (var i = 0, n = data.length; i < n; i++) {
+            var contents =
+                `<tr>
                 <td> ${data[i].departure} </td>
                 <td> ${data[i].destination} </td>
                 <td> ${data[i].date} </td>
@@ -79,12 +142,25 @@ $(document).ready(function () {
                 <td><button class="joinBtn" id="${data[i].id}">Join</button></td>
             </tr>`
 
-                table += contents
-            }
+            table += contents
+        }
 
-            table += `</table>`
+        table += `</table>`
 
-            $("#listDiv").append(table)
+        $("#listDiv").append(table)
+
+    }
+
+ 
+
+    //requesting all database 
+    function loadAll() {
+        console.log("loading all")
+
+
+        $.get("/api/all", function (data) {
+
+            refreshTable(data);
 
         })
     }

@@ -10,6 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: { len: [1, 140] }
     },
+    
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
@@ -31,8 +32,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
   freezeTableName: true
+
+
   return lists;
 };
-
-
-  //departure, destination, dateTime, seats, minMoney, 
