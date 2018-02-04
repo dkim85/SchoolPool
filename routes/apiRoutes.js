@@ -3,6 +3,21 @@ var db = require("../models");
 
 module.exports = function (app) {
 
+  
+  app.get("/api/all/:id", function (req, res) {
+
+    var id = req.params.id;
+
+    db.lists.findAll({
+      where: {
+        id: id
+      }
+    }).then(function (data) {
+      res.json(data);
+    })
+  })
+
+
 
   app.get("/api/all/:school?", function (req, res) {
 
@@ -18,8 +33,8 @@ module.exports = function (app) {
         res.json(data);
       })
     }
-
-    else if (school == null) {
+    else if (!school){
+      console.log(`print all`)
       db.lists.findAll({})
         .then(function (data) {
           res.json(data);
@@ -38,12 +53,27 @@ module.exports = function (app) {
 
   app.post("/api/joinRide", function (req, res) {
     console.log(req.body)
-    db.users.create(req.body)
-    
+    db.users.create(req.body)   
 
   })
 
-  //   app.get("/api/all/false", function(req, res) {
+  app.put("/api/update", function(req, res) {
+    console.log(req.body)
+        db.lists.update({
+          currentSeats:req.body.currentSeats
+        }, {
+          where: {
+            id: req.body.id
+          }
+        })        
+  
+      });
+
+  
+};
+
+
+//   app.get("/api/all/false", function(req, res) {
   //     db.burgers.findAll({
   //         where:{
   //             complete:false
@@ -93,4 +123,3 @@ module.exports = function (app) {
   //     });
 
   //   });
-};

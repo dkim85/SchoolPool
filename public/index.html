@@ -26,32 +26,33 @@
     <title>SchoolPool</title>
 </head>
 
-<body>
-    <h1>SchoolPool</h1>
+<body id="home">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+            <a href="index.html" class="navbar-brand mr-5">SchoolPool</a>
+            <div class="collapse navbar-collapse text-white" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Get a Ride</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Post a Ride</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Schools" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          
+                    <li class="nav-item">
+                        <a class="nav-link mr-3" id="getRide">Get a Ride</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="postRide">Post a Ride</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0"> -->
+                    <input class="inputValue" id="searchTerm" type="search" value="Search Schools" aria-label="Search" >
+                    <button class="btn btn-primary ml-3" id="searchBtn">Search</button>
+                <!-- </form> -->
+            </div>
         </div>
+    </nav>
+    </div>
     </nav>
 
     <div id="displayDiv">
@@ -127,9 +128,9 @@
                     <option>5</option>
                 </select>
             </p>
-            <p>MinumumContributes ($)</p>
+            <p>Minimum Contributes ($)</p>
             <p>
-                <input id="minumum" class="inputValue" type="text" value="20">
+                <input id="minimum" class="inputValue" type="text" value="20">
             </p>
 
             <p>
@@ -139,58 +140,52 @@
             <button id="closeBtn">X</button>
 
         </div>
-
-        <div id="listDiv">
-
-
-        </div>
-    </div>
-
-    <header id="home-section">
-            <div class="dark-overlay">
+        <!-- HOME SECTION -->
+        <header id="home-section">
+            <div class="dark-overlay">                    
+                <div class="col-md-12 m-auto" style="overflow-x:auto;" id="listDiv">   
+                </div>
                 <div class="home-inner">
-                    <div class="container text-white">
-                        <div class="row">
-                        <div class="col-lg-6 m-auto">
-                            <h1 class="display-4">
-                            Make Every Trip to College
-                                <br> a Smart Trip</h1>
-        
-                            <div class="d-flex flex-row">
-                                <div class="p-4 align-self-start">
-                                    <i class="fa fa-check"></i>
-                                </div>
-                                <div class="p-4 align-self-end">
-                                    Have you ever had trouble finding a friend to carpool with on the weekends or for the holidays? Did you ever wish that there
-                                    was a way to connect with others who can either give you a ride or pitch in for some gas?
-                                </div>
-                            </div>
-        
-                            <div class="d-flex flex-row">
-                                <div class="p-4 align-self-start">
-                                    <i class="fa fa-check"></i>
-                                </div>
-                                <div class="p-4 align-self-end">
-                                    Say goodbye to your stress and say hello to School Pool! This app provides an efficient alternative to carpooling from campus
-                                    to any location that you desire. Post your own ride if you are looking for others to join
-                                    you on your journey or search for people who are already driving and looking for passengers.
-                                </div>
-                            </div>
-        
-                            <div class="d-flex flex-row">
-                                <div class="p-4 align-self-start">
-                                    <i class="fa fa-check"></i>
-                                </div>
-                                <div class="p-4 align-self-end">
-                                    So what are you waiting for? Start using SchoolPool and make your drives from school more enjoyable!
-                                </div>
-                            </div>
-                        </div>
-                        </div>
+                <div class="container text-white">
+                <div class="row">
+                <div class="col-md-6 m-auto d-none d-md-block">
+                    <h1 class="display-4 text-center pt-5">
+                    Make Every Trip to College
+                    <br> a Smart Trip</h1>
+                    <div class="d-flex flex-row">
+                    <div class="p-4 align-self-start">
+                        <i class="fa fa-check"></i>
                     </div>
+                    <div class="p-4 align-self-end">
+                        Have you ever had trouble finding a friend to carpool with on the weekends or for the holidays? Did you ever wish that there
+                        was a way to connect with others who can either give you a ride or pitch in for some gas?
+                    </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                    <div class="p-4 align-self-start">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="p-4 align-self-end">
+                        Say goodbye to your stress and say hello to School Pool! This app provides an efficient alternative to carpooling from campus
+                        to any location that you desire. Post your own ride if you are looking for others to join
+                        you on your journey or search for people who are already driving and looking for passengers.
+                    </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                    <div class="p-4 align-self-start">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="p-4 align-self-end">
+                        So what are you waiting for? Start using SchoolPool and make your drives from school more enjoyable!
+                    </div>
+                    </div>
+                </div>
+                </div>
+                </div>
                 </div>
             </div>
         </header>
+    </div>
 
     <script src="js/view.js" type="text/javascript"></script>
 </body>

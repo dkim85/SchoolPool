@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
     loadAll()
-
-
     //posting ride
     $(document).on("click", "#postBtn", function () {
 
@@ -11,6 +9,7 @@ $(document).ready(function () {
             destination: $("#destination").val(),
             date: $("#date").val(),
             time: $("#time").find(":selected").text(),
+            currentSeats: 0,
             seats: $("#seats").find(":selected").text(),
             minMoney: $("#minumum").val()
         };
@@ -28,7 +27,9 @@ $(document).ready(function () {
     //join ride
     $(document).on("click", "#joinBtn",function(){
         $("#blackoutDiv").css("display","none");
-        var targetId = $(this).attr("id");
+        $("#joinDiv").css("display","none");
+        var targetId = $(this).parent().parent().attr("value");
+        console.log(targetId)
 
         var data ={
             name: $("#joinName").val(),
@@ -47,13 +48,40 @@ $(document).ready(function () {
             $("#joinMemo").val(""); 
         })
 
+        $.get("/api/all/"+targetId, function (data) {
+            // console.log(data[0])
+            console.log(`updating target id:${data[0].id}`);
+            var addSeat = data[0].currentSeats+1
+            console.log(`new seat is ${addSeat}`)
+            var updatedSeat = {
+                id:data[0].id,
+                currentSeats: addSeat
+            };
+
+            
+
+            console.log(updatedSeat);
+
+            $.ajax({
+                method: "PUT",
+                url: "/api/update",
+                data: updatedSeat
+            }).then(function(){
+                
+            })  
+            
+            
+        })       
+
         
     })
 
     //join button inside the table
     $(document).on("click",".joinBtn", function(){
         $("#blackoutDiv").css("display","block");
-        $("#joinDiv").css("display","block")
+        $("#joinDiv").css("display","block");
+        // console.log(`${$(this).attr("id")}`)
+        $("#joinDiv").attr("value",`${$(this).attr("id")}`);
 
     }) 
 
@@ -92,18 +120,16 @@ $(document).ready(function () {
 
     //search by school button from the nav bar
     $(document).on("click", "#searchBtn", function () {
-
-        loadBySchool();
+        var searchTerm = `/api/all/${$("#searchTerm").val()}`;
+        console.log(searchTerm)
+        loadBySchool(searchTerm);
     })
 
     //search by school function
 
-    function loadBySchool(){
-
-        var searchTerm = $("#searchTerm").val();
-
-        $.get("/api/all/" + searchTerm, function (data) {
-            console.log(searchTerm)
+    function loadBySchool(searchTerm){        
+        
+        $.get(searchTerm, function (data) {            
       
             refreshTable(data)
         })       
@@ -113,21 +139,21 @@ $(document).ready(function () {
     //refreshing table (front end side)
 
     function refreshTable(data) {
-        console.log(data)
+        // console.log(data)
 
         $("#listDiv").empty();
         $("#blackoutDiv").css("display","none");
 
         var table =
             `<table>
-            <tr>
+            <tr>                
                 <th>Departure</th>
                 <th>Destination</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Number of Seats</th>
-                <th>Minimum Pay</th>
-                <th>Join</th>
+                <th>Minimum Pay</th>            
+                <th>Join</th>              
             </tr>`
 
         for (var i = 0, n = data.length; i < n; i++) {
@@ -137,7 +163,7 @@ $(document).ready(function () {
                 <td> ${data[i].destination} </td>
                 <td> ${data[i].date} </td>
                 <td> ${data[i].time} </td>
-                <td> ${data[i].seats} </td>
+                <td> ${data[i].currentSeats} / ${data[i].seats} </td>
                 <td> ${data[i].minMoney} </td>
                 <td><button class="joinBtn" id="${data[i].id}">Join</button></td>
             </tr>`
@@ -148,7 +174,6 @@ $(document).ready(function () {
         table += `</table>`
 
         $("#listDiv").append(table)
-
     }
 
  
@@ -156,9 +181,7 @@ $(document).ready(function () {
     //requesting all database 
     function loadAll() {
         console.log("loading all")
-
-
-        $.get("/api/all", function (data) {
+        $.get("/api/all/", function (data) {
 
             refreshTable(data);
 
