@@ -24,6 +24,11 @@ module.exports = function (sequelize, DataTypes) {
           type:DataTypes.STRING,
           allowNull: false,
           validate: {len:[1]}
+      },
+      pin:{
+        type:DataTypes.INTEGER,
+        allowNull: false,
+        validate: {len:[1]}
       }
     });
     freezeTableName: true;

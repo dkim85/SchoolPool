@@ -6,6 +6,16 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { len: [1, 140] }
+    },
+    pin: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: { len: [1] }
+    },
     departure: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -15,8 +25,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: { len: [1, 140] }
-    },
-
+    },    
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
@@ -34,6 +43,9 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: { len: [1, 10] }
+    },
+    isFull: {
+      type: DataTypes.BOOLEAN
     },
     minMoney: {
       type: DataTypes.STRING,

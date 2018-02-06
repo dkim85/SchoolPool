@@ -106,3 +106,12 @@ tr:nth-child(even) {
     top:90px;
     left:0px;
 }
+
+.showRiders,#joinBtn,#postPinBtn{
+    cursor:pointer
+}
+
+#ridersDiv{
+    width:700px;
+    height:auto;
+}

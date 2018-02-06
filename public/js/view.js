@@ -5,6 +5,8 @@ $(document).ready(function () {
     $(document).on("click", "#postBtn", function () {
 
         var data = {
+            name: $("#name").val(),
+            pin: $("#pin").val(),
             departure: $("#departure").val(),
             destination: $("#destination").val(),
             date: $("#date").val(),
@@ -33,6 +35,7 @@ $(document).ready(function () {
 
         var data ={
             name: $("#joinName").val(),
+            pin: $("#joinPin").val(),
             phone:$("#joinPhone").val(),
             email:$("#joinEmail").val(),
             memo:$("#joinMemo").val(),
@@ -48,7 +51,7 @@ $(document).ready(function () {
             $("#joinMemo").val(""); 
         })
 
-        $.get("/api/all/"+targetId, function (data) {
+        $.get("/api/ids/"+targetId, function (data){
             // console.log(data[0])
             console.log(`updating target id:${data[0].id}`);
             var addSeat = data[0].currentSeats+1
@@ -57,22 +60,31 @@ $(document).ready(function () {
                 id:data[0].id,
                 currentSeats: addSeat
             };
-
             
+            if (addSeat >= data[0].seats){
+                console.log("Seat reached max seat");
+                var targetBtn = `#`+targetId;
+                console.log(targetBtn)
+                $(targetBtn).attr("value","disabled")
+            }
 
             console.log(updatedSeat);
 
             $.ajax({
                 method: "PUT",
                 url: "/api/update",
-                data: updatedSeat
-            }).then(function(){
-                
-            })  
+                data: updatedSeat,
+                success: function(response){
+                    if(response.success){
+                        alert(`Joined!`)
+                    }
+                    else{
+                        alert(`Seat is full! Please refresh the page.`)
+                    }
+                   }
+            })
             
-            
-        })       
-
+        })
         
     })
 
@@ -83,7 +95,82 @@ $(document).ready(function () {
         // console.log(`${$(this).attr("id")}`)
         $("#joinDiv").attr("value",`${$(this).attr("id")}`);
 
-    }) 
+    })
+
+    //show Riders in post
+    var showId = ``;
+    $(document).on("click", ".showRiders",function(){
+        window.scrollTo(0, 0);
+        $("#ridersDiv").empty()
+        $("#ridersDiv").append(`
+        <h3>Type your post pin number</h3>
+        <p>Pin: <input maxlength="4" type="password" id="postPin"></p>
+        <p><button id="postPinBtn">Submit</button></p>
+        <button id="closeBtn">X</button>
+        `)
+        // console.log(`${$(this).attr("value")} is id`)
+        $("#blackoutDiv").css("display","block");
+        $("#ridersDiv").css("display","block");
+        showId = $(this).attr("value");
+        console.log(`showId is set: ${showId}`)
+    })
+
+
+    $(document).on("click", "#postPinBtn",function(){
+        var pin = Number($("#postPin").val());
+
+        $.get("/pin/"+showId, function (data) {
+            console.log(`pin from server is ${data[0].pin}`)
+
+            if (pin == data[0].pin){
+                alert("pin matched, riders will be displayed")
+                displayRiders(showId)
+                showId = ``;
+                console.log(`showId is: cleared ${showId}`)                
+            }
+            else{
+                alert("pin not matching, please try again")
+            }
+        })      
+    })
+
+
+    function displayRiders(showId){
+        console.log(`displayRiders with id ${showId}`)
+        $("#ridersDiv").empty();
+        
+        $.get("/user/"+showId, function (data) {
+            console.log(data)
+        var table =
+            `<table>
+            <tr>
+                <th>Name</th>                
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Memo</th>        
+            </tr>`
+
+        for (var i = (data.length-1); i >= 0; i--) {
+
+            var dis = ``;
+            var joinText = `Join`;
+            
+            var contents =
+                `<tr>
+                <td> ${data[i].name} </td>
+                <td> ${data[i].phone} </td>
+                <td> ${data[i].email} </td>
+                <td> ${data[i].memo} </td>   
+                </tr>`
+
+            table += contents
+        }
+
+        table += `</table><button id="closeBtn">X</button>`
+
+        $("#ridersDiv").append(table)
+    })
+}
 
     //clear the default value of inputbox when click.
 
@@ -99,6 +186,8 @@ $(document).ready(function () {
         console.log(target)
 
         $(target).css("display", "none");
+        showId = ``;
+        console.log(`showId is: cleared ${showId}`)
         $("#blackoutDiv").css("display","none");
         loadAll()
     })
@@ -112,7 +201,7 @@ $(document).ready(function () {
     })
 
     //get ride button from the nav bar
-    $(document).on("click", "#getRide", function () {
+    $(document).on("click", "#fullTable", function () {
         $("#addDiv").css("display", "none")
         loadAll()
     })
@@ -129,7 +218,7 @@ $(document).ready(function () {
 
     function loadBySchool(searchTerm){        
         
-        $.get(searchTerm, function (data) {            
+        $.get(searchTerm, function (data) {        
       
             refreshTable(data)
         })       
@@ -141,12 +230,12 @@ $(document).ready(function () {
     function refreshTable(data) {
         // console.log(data)
 
-        $("#listDiv").empty();
-        $("#blackoutDiv").css("display","none");
+
 
         var table =
             `<table>
-            <tr>                
+            <tr>
+                <th>Name</th>                
                 <th>Departure</th>
                 <th>Destination</th>
                 <th>Date</th>
@@ -156,16 +245,27 @@ $(document).ready(function () {
                 <th>Join</th>              
             </tr>`
 
-        for (var i = 0, n = data.length; i < n; i++) {
+        for (var i = (data.length-1); i >= 0; i--) {
+
+            var dis = `style="background-color:#CFEBF7"`;
+            var joinText = `Join`;
+
+            if (data[i].isFull){
+                console.log(`${data[i].name}'s post is full`)
+                dis = `disabled style="background-color:#FCE6FC"`
+                joinText = `Full`
+            }            
+            
             var contents =
                 `<tr>
+                <td> ${data[i].name} </td>
                 <td> ${data[i].departure} </td>
                 <td> ${data[i].destination} </td>
                 <td> ${data[i].date} </td>
                 <td> ${data[i].time} </td>
-                <td> ${data[i].currentSeats} / ${data[i].seats} </td>
+                <td> ${data[i].currentSeats} / ${data[i].seats} <button class="showRiders" value="${data[i].id}">Show Riders</button></td>
                 <td> ${data[i].minMoney} </td>
-                <td><button class="joinBtn" id="${data[i].id}">Join</button></td>
+                <td><button class="joinBtn" ${dis} id="${data[i].id}">${joinText}</button></td>
             </tr>`
 
             table += contents
@@ -181,6 +281,9 @@ $(document).ready(function () {
     //requesting all database 
     function loadAll() {
         console.log("loading all")
+        $("#listDiv").empty();
+        $("#blackoutDiv").css("display","none");
+
         $.get("/api/all/", function (data) {
 
             refreshTable(data);
