@@ -229,8 +229,8 @@ $(document).ready(function () {
 
     function refreshTable(data) {
         // console.log(data)
-
-
+        $("#listDiv").empty();
+        $("#blackoutDiv").css("display","none");
 
         var table =
             `<table>
@@ -281,9 +281,6 @@ $(document).ready(function () {
     //requesting all database 
     function loadAll() {
         console.log("loading all")
-        $("#listDiv").empty();
-        $("#blackoutDiv").css("display","none");
-
         $.get("/api/all/", function (data) {
 
             refreshTable(data);
