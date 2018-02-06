@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 require("./routes/apiRoutes.js")(app);
-require("./routes/htmlRoutes.js")(app);
-require("./send_sms.js");
+
 
 
 db.sequelize.sync().then(function() {

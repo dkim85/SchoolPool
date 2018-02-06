@@ -28,6 +28,16 @@ module.exports = function (sequelize, DataTypes) {
     minMoney: {
       type: DataTypes.STRING,
       validate: { isNumeric: true }
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { len: [1, 20] }
+    },
+    phoneNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: { len: [10]}
     }
   });
   freezeTableName: true
